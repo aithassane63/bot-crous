@@ -103,7 +103,7 @@ TELEGRAM_BACKOFF_BASE = float(os.getenv("TELEGRAM_BACKOFF_BASE", "2.0"))
 
 # --- Monitoring behaviour ----------------------------------------------------
 FAILURE_THRESHOLD = int(os.getenv("FAILURE_THRESHOLD", "3"))
-HEARTBEAT_INTERVAL_HOURS = int(os.getenv("HEARTBEAT_INTERVAL_HOURS", "24"))
+HEARTBEAT_INTERVAL_HOURS = int(os.getenv("HEARTBEAT_INTERVAL_HOURS", "1"))
 
 # --- State file (committed back to the repo by the workflow) -----------------
 STATE_FILE = os.getenv("STATE_FILE", "state.json")
@@ -694,7 +694,7 @@ def main():
             )
             try:
                 send_telegram(
-                    "\U0001f493 <b>Bot CROUS \u2014 statut quotidien</b>\n\n"
+                    "\U0001f493 <b>Bot CROUS \u2014 je suis en ligne</b>\n\n"
                     "\u00c9tat : \u2705 op\u00e9rationnel\n"
                     "\U0001f4e6 Logements disponibles : %d (%d suivis)\n"
                     "\U0001f552 %s"
