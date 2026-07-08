@@ -52,18 +52,33 @@ CROUS_ACCOMMODATION_URL_TEMPLATE = (
     CROUS_BASE_URL + "/tools/{tool_id}/accommodations/{acc_id}"
 )
 
-# --- Tool id detection -------------------------------------------------------
-# The bot first tries to auto-detect the campaign tool id from the homepage.
-# If that fails, it uses this fallback. IMPORTANT: verify the fallback once a
-# year (open the search page and read /tools/<ID>/search in the browser URL).
-FALLBACK_TOOL_ID = int(os.getenv("CROUS_FALLBACK_TOOL_ID", "41"))
+# --- Tool id (campaign) resolution ------------------------------------------
+# The tool id is the campaign number in the URL: /tools/<ID>/search.
+# For Ile-de-France 2026/2027 it is 47 (verified from the official search URL).
+#
+# Resolution priority:
+#   1. CROUS_TOOL_ID           -> if set, used directly (pinned).
+#   2. homepage auto-detection -> only if CROUS_AUTODETECT_TOOL_ID is enabled.
+#   3. FALLBACK_TOOL_ID        -> safe default (47).
+#
+# Auto-detection is OFF by default: the homepage exposes several tool ids and
+# can return the wrong one (it returned 42 in testing), so relying on the known
+# pinned id is more reliable.
+CROUS_TOOL_ID = os.getenv("CROUS_TOOL_ID", "").strip()
+CROUS_AUTODETECT_TOOL_ID = os.getenv("CROUS_AUTODETECT_TOOL_ID", "false").lower() in (
+    "1",
+    "true",
+    "yes",
+    "on",
+)
+FALLBACK_TOOL_ID = int(os.getenv("CROUS_FALLBACK_TOOL_ID", "47"))
 
 # --- Geographic bounding box (Ile-de-France, includes Paris) -----------------
 # Two opposite corners of the search rectangle.
-BBOX_WEST = float(os.getenv("CROUS_BBOX_WEST", "1.4461"))     # min longitude
-BBOX_SOUTH = float(os.getenv("CROUS_BBOX_SOUTH", "48.1201"))  # min latitude
-BBOX_EAST = float(os.getenv("CROUS_BBOX_EAST", "3.5590"))     # max longitude
-BBOX_NORTH = float(os.getenv("CROUS_BBOX_NORTH", "49.2412"))  # max latitude
+BBOX_WEST = float(os.getenv("CROUS_BBOX_WEST", "1.4462445"))     # min longitude
+BBOX_SOUTH = float(os.getenv("CROUS_BBOX_SOUTH", "48.1201456"))  # min latitude
+BBOX_EAST = float(os.getenv("CROUS_BBOX_EAST", "3.5592208"))     # max longitude
+BBOX_NORTH = float(os.getenv("CROUS_BBOX_NORTH", "49.241431"))   # max latitude
 
 # --- Search paging -----------------------------------------------------------
 PAGE_SIZE = int(os.getenv("CROUS_PAGE_SIZE", "50"))
@@ -145,6 +160,37 @@ def _label_or_value(node):
     return node
 
 
+def _search_price(node, depth=0):
+    """Best-effort search for a rent/price label inside a nested structure.
+
+    The CROUS item does not expose rent at the top level; it lives inside a
+    booking-related subtree. We scan only those subtrees to avoid picking up an
+    unrelated number (surface, bed count...).
+    """
+    if node is None or depth > 3:
+        return None
+    if isinstance(node, dict):
+        for key in ("rent", "price", "amount", "monthlyPrice", "totalPrice", "cost"):
+            if key in node:
+                value = node[key]
+                label = _label_or_value(value) if isinstance(value, dict) else value
+                if label not in (None, ""):
+                    return label
+        label = node.get("label")
+        if isinstance(label, str) and "\u20ac" in label:  # contains a euro sign
+            return label
+        for value in node.values():
+            found = _search_price(value, depth + 1)
+            if found is not None:
+                return found
+    elif isinstance(node, list):
+        for value in node:
+            found = _search_price(value, depth + 1)
+            if found is not None:
+                return found
+    return None
+
+
 # --------------------------------------------------------------------------- #
 # HTTP SESSION + RETRYING REQUEST
 # --------------------------------------------------------------------------- #
@@ -194,11 +240,8 @@ def http_request(session, method, url, **kwargs):
 # --------------------------------------------------------------------------- #
 # TOOL ID DETECTION
 # --------------------------------------------------------------------------- #
-def detect_tool_id(session):
-    """Scrape the homepage to find the current campaign tool id.
-
-    Falls back to FALLBACK_TOOL_ID when detection is not possible.
-    """
+def detect_tool_id_from_homepage(session):
+    """Scrape the homepage for a campaign tool id. Returns int or None."""
     try:
         resp = http_request(session, "GET", CROUS_HOMEPAGE_URL)
         html = resp.text
@@ -208,15 +251,26 @@ def detect_tool_id(session):
         candidates += re.findall(r"tools/(\d+)/", html)
         if candidates:
             tool_id = int(candidates[0])
-            log.info("Detected CROUS tool id from homepage: %d", tool_id)
+            log.info("Auto-detected tool id from homepage: %d", tool_id)
             return tool_id
         log.warning("Could not detect tool id from homepage markup.")
     except Exception as exc:
         log.warning("Tool id detection failed: %s", exc)
-    log.warning(
-        "Using fallback tool id: %d (verify it is the current campaign!).",
-        FALLBACK_TOOL_ID,
-    )
+    return None
+
+
+def resolve_tool_id(session):
+    """Resolve the campaign tool id using the configured priority."""
+    if CROUS_TOOL_ID.isdigit():
+        tool_id = int(CROUS_TOOL_ID)
+        log.info("Using pinned CROUS_TOOL_ID: %d", tool_id)
+        return tool_id
+    if CROUS_AUTODETECT_TOOL_ID:
+        detected = detect_tool_id_from_homepage(session)
+        if detected is not None:
+            return detected
+        log.warning("Auto-detection failed; falling back.")
+    log.info("Using tool id: %d", FALLBACK_TOOL_ID)
     return FALLBACK_TOOL_ID
 
 
@@ -273,7 +327,12 @@ def parse_listing(item, tool_id):
         or "Adresse non communiquee"
     )
     area = _label_or_value(item.get("area")) or _label_or_value(item.get("surface"))
-    rent = _label_or_value(item.get("rent")) or _label_or_value(item.get("price"))
+    rent = (
+        _label_or_value(item.get("rent"))
+        or _label_or_value(item.get("price"))
+        or _search_price(item.get("bookingData"))
+        or _search_price(item.get("occupationModes"))
+    )
 
     url = item.get("url")
     if not url:
@@ -289,6 +348,7 @@ def parse_listing(item, tool_id):
         "area": None if area is None else str(area),
         "rent": None if rent is None else str(rent),
         "url": str(url),
+        "available": bool(item.get("available", True)),
         "units": parse_units(item),
     }
 
@@ -506,14 +566,29 @@ def save_state(state):
 # DIFF + HEARTBEAT LOGIC
 # --------------------------------------------------------------------------- #
 def diff_listings(old, new):
-    """Return (new_ids, restocked_ids)."""
-    new_ids = [acc_id for acc_id in new if acc_id not in old]
+    """Return (new_ids, restocked_ids).
+
+    A listing is *bookable* when its `available` flag is true.
+    - new_ids       : ids never seen before AND currently available.
+    - restocked_ids : known ids that flipped from unavailable to available,
+      or (fallback) whose available-unit count increased.
+    All ids (available or not) are still stored by the caller, so a later flip
+    from unavailable to available is detected as a restock.
+    """
+    new_ids = []
     restocked = []
     for acc_id, current in new.items():
-        if acc_id in old:
-            previous_units = old[acc_id].get("units", 1)
-            if current.get("units", 1) > previous_units:
-                restocked.append(acc_id)
+        cur_available = current.get("available", True)
+        if acc_id not in old:
+            if cur_available:
+                new_ids.append(acc_id)
+            continue
+        prev = old[acc_id]
+        prev_available = prev.get("available", True)
+        if cur_available and not prev_available:
+            restocked.append(acc_id)
+        elif cur_available and current.get("units", 1) > prev.get("units", 1):
+            restocked.append(acc_id)
     return new_ids, restocked
 
 
@@ -534,22 +609,31 @@ def should_send_heartbeat(state, now):
 # --------------------------------------------------------------------------- #
 def run_monitor_cycle(state, session, now):
     """Perform one full monitoring cycle. Raises on failure."""
-    tool_id = detect_tool_id(session)
+    tool_id = resolve_tool_id(session)
     listings = fetch_all_listings(session, tool_id)
 
     if not state["initialized"]:
         # First run: record everything silently, send ONE confirmation.
+        available_count = sum(
+            1 for item in listings.values() if item.get("available", True)
+        )
         state["listings"] = listings
         state["initialized"] = True
         state["last_heartbeat"] = now.isoformat()
         send_telegram(
             "\u2705 <b>Bot CROUS activ\u00e9</b>\n\n"
             "Surveillance de l'\u00cele-de-France d\u00e9marr\u00e9e.\n"
-            "\U0001f4e6 %d logement(s) actuellement recens\u00e9(s).\n\n"
+            "\U0001f4e6 %d logement(s) disponible(s) actuellement "
+            "(%d suivi(s) au total).\n\n"
             "Vous recevrez une alerte d\u00e8s qu'un nouveau logement appara\u00eet "
-            "ou qu'un logement est r\u00e9approvisionn\u00e9." % len(listings)
+            "ou qu'un logement est r\u00e9approvisionn\u00e9."
+            % (available_count, len(listings))
         )
-        log.info("First run: recorded %d listings silently.", len(listings))
+        log.info(
+            "First run: recorded %d listings (%d available) silently.",
+            len(listings),
+            available_count,
+        )
         return listings
 
     new_ids, restocked = diff_listings(state["listings"], listings)
@@ -599,13 +683,20 @@ def main():
 
         # Daily heartbeat.
         if should_send_heartbeat(state, now):
+            available_count = sum(
+                1 for item in listings.values() if item.get("available", True)
+            )
             try:
                 send_telegram(
                     "\U0001f493 <b>Bot CROUS \u2014 statut quotidien</b>\n\n"
                     "\u00c9tat : \u2705 op\u00e9rationnel\n"
-                    "\U0001f4e6 Logements actifs surveill\u00e9s : %d\n"
+                    "\U0001f4e6 Logements disponibles : %d (%d suivis)\n"
                     "\U0001f552 %s"
-                    % (len(listings), now.strftime("%d/%m/%Y %H:%M UTC"))
+                    % (
+                        available_count,
+                        len(listings),
+                        now.strftime("%d/%m/%Y %H:%M UTC"),
+                    )
                 )
                 state["last_heartbeat"] = now.isoformat()
             except Exception as exc:

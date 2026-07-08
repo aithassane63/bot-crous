@@ -230,6 +230,25 @@ Remarques importantes :
 - Les exécutions planifiées peuvent parfois être **légèrement retardées** quand
   la plateforme GitHub est très sollicitée. C'est normal et gratuit.
 
+### Le bot tourne-t-il en continu (24h/24) ?
+
+Oui, **de fait**. Il n'y a pas de programme qui « reste allumé » : à la place,
+GitHub relance automatiquement une petite exécution toutes les 15 minutes (ou
+selon votre `cron`). Mises bout à bout, ces exécutions assurent une surveillance
+continue, sans serveur, sans rien à maintenir.
+
+Deux points à comprendre :
+
+- Le bouton **Run workflow** (étape 7) est un lancement **manuel** et ponctuel.
+  Il est **indépendant** de la planification automatique.
+- Après le tout premier envoi sur GitHub, la planification peut mettre **quelques
+  dizaines de minutes** à démarrer. Patientez, puis vérifiez l'onglet **Actions** :
+  les exécutions automatiques y apparaissent avec le déclencheur **« Scheduled »**.
+
+Ce n'est pas du temps réel à la seconde (le minimum est de 5 minutes et il peut y
+avoir de légers retards), mais c'est la meilleure surveillance possible en
+**100 % gratuit**.
+
 ---
 
 ## 📜 Voir les logs
@@ -305,12 +324,23 @@ Vous n'avez rien à faire : `state.json` se crée et se met à jour tout seul.
 - Regardez les logs (étape *Run CROUS monitor*). Une erreur Telegram y apparaît
   en clair (token invalide, chat id invalide…).
 
-**Le message « Using fallback tool id » apparaît dans les logs.**
-- La détection automatique de la campagne a échoué et le bot utilise la valeur de
-  secours. Vérifiez l'identifiant réel : ouvrez la page de recherche CROUS et
-  lisez le nombre dans l'URL `/tools/<ID>/search`. Mettez ensuite à jour le secret
-  optionnel `CROUS_FALLBACK_TOOL_ID` (ou la constante `FALLBACK_TOOL_ID` dans
-  `crous_bot.py`).
+**Quel identifiant de campagne (tool id) le bot utilise-t-il ?**
+- Par défaut, le bot est **fixé sur l'identifiant 47** (Île-de-France 2026/2027).
+  La détection automatique est **désactivée** car la page d'accueil peut renvoyer
+  un mauvais identifiant.
+- Pour vérifier l'identifiant réel : ouvrez la page de recherche CROUS et lisez
+  le nombre dans l'URL `/tools/<ID>/search`.
+- **Changer d'identifiant** (par ex. l'an prochain) : modifiez la constante
+  `FALLBACK_TOOL_ID` en haut de `crous_bot.py`, **ou** créez un secret optionnel
+  `CROUS_TOOL_ID` avec la bonne valeur. Le secret l'emporte sur tout le reste.
+- Pour réactiver la détection automatique : créez le secret
+  `CROUS_AUTODETECT_TOOL_ID` avec la valeur `true`.
+
+**Je viens de changer le tool id / la campagne : dois-je faire autre chose ?**
+- Oui : **supprimez le fichier `state.json`** du dépôt (bouton corbeille sur
+  GitHub, puis *Commit*). L'exécution suivante repart comme un premier démarrage
+  (enregistrement silencieux + un seul message de confirmation), ce qui évite de
+  recevoir d'un coup une alerte pour chaque logement de la nouvelle campagne.
 
 **Le bot tourne mais ne détecte aucun logement.**
 - C'est peut-être simplement qu'il n'y a rien de disponible à cet instant.
