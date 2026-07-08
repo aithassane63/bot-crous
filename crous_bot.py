@@ -360,9 +360,12 @@ def fetch_all_listings(session, tool_id):
     logged_sample = False
 
     for page in range(1, MAX_PAGES + 1):
+        # This payload mirrors exactly what the CROUS website sends for its
+        # Ile-de-France search (captured from the browser Network tab), so the
+        # API returns the same results the site shows.
         payload = {
             "idTool": tool_id,
-            "need_aggregation": False,
+            "need_aggregation": True,
             "page": page,
             "pageSize": PAGE_SIZE,
             "sector": None,
@@ -372,9 +375,12 @@ def fetch_all_listings(session, tool_id):
                 {"lon": BBOX_EAST, "lat": BBOX_SOUTH},
             ],
             "residence": None,
-            "precision": 8,
+            "precision": 4,
             "equipment": [],
-            "price": {"min": 0, "max": 100000000},
+            "adaptedPmr": False,
+            "area": {"min": 0},
+            "price": {"max": 10000000},
+            "toolMechanism": "residual",
         }
         resp = http_request(
             session,
