@@ -1,0 +1,49 @@
+{
+  "consecutive_failures": 0,
+  "failure_alert_sent": false,
+  "initialized": true,
+  "last_heartbeat": "2026-07-08T10:09:30.153945+00:00",
+  "listings": {
+    "1031": {
+      "address": "9, square de l'échiquier 95800 Cergy st Christophe",
+      "area": null,
+      "id": "1031",
+      "label": "T1 Colocation",
+      "rent": null,
+      "residence": "Cergy-Le Square",
+      "units": 1,
+      "url": "https://trouverunlogement.lescrous.fr/tools/42/accommodations/1031"
+    },
+    "1873": {
+      "address": "4 Allée Jean Rostand 91000 EVRY",
+      "area": null,
+      "id": "1873",
+      "label": "T2",
+      "rent": null,
+      "residence": "Evry-Dragueur",
+      "units": 1,
+      "url": "https://trouverunlogement.lescrous.fr/tools/42/accommodations/1873"
+    },
+    "2867": {
+      "address": "18 rue du Bois Guillaume 91000 Evry Courcouronnes",
+      "area": null,
+      "id": "2867",
+      "label": "T1 bis",
+      "rent": null,
+      "residence": "Evry-Le Bois Guillaume",
+      "units": 1,
+      "url": "https://trouverunlogement.lescrous.fr/tools/42/accommodations/2867"
+    },
+    "69": {
+      "address": "1 Impasse de la Predecelle 91000 EVRY",
+      "area": null,
+      "id": "69",
+      "label": "T 1",
+      "rent": null,
+      "residence": "Evry- Aunettes",
+      "units": 1,
+      "url": "https://trouverunlogement.lescrous.fr/tools/42/accommodations/69"
+    }
+  },
+  "version": 1
+}
