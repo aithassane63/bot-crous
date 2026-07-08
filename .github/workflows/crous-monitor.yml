@@ -2,11 +2,11 @@ name: CROUS Monitor
 
 on:
   schedule:
-    # Every 15 minutes (times are UTC).
-    # GitHub's minimum interval is 5 minutes ("*/5 * * * *"), but scheduled
-    # runs can be delayed under platform load. See README for tuning + free
-    # tier limits (public repos = free unlimited minutes; private = 2000/mo).
-    - cron: "*/15 * * * *"
+    # Runs at :07, :22, :37, :52 every hour (times are UTC).
+    # Deliberately OFF the round quarter-hours: GitHub queues a huge number of
+    # crons at :00/:15/:30/:45 and delays or drops them under load. Off-peak
+    # minutes fire far more reliably. Minimum interval allowed is 5 minutes.
+    - cron: "7,22,37,52 * * * *"
   # Allow running the workflow by hand from the Actions tab.
   workflow_dispatch: {}
 
@@ -25,10 +25,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
