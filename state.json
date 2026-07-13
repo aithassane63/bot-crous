@@ -3,6 +3,18 @@
   "failure_alert_sent": false,
   "initialized": true,
   "last_heartbeat": "2026-07-13T07:41:14.562604+00:00",
-  "listings": {},
+  "listings": {
+    "363": {
+      "address": "1 rue Jules Vales 91000 Evry",
+      "area": null,
+      "available": true,
+      "id": "363",
+      "label": "T2 PMR",
+      "rent": "7000",
+      "residence": "Evry-Flora Tristan",
+      "units": 1,
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/363"
+    }
+  },
   "version": 1
 }
