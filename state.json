@@ -25,6 +25,17 @@
       "residence": "JEAN ZAY",
       "units": 1,
       "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1583"
+    },
+    "1728": {
+      "address": "8, place François Rabelais 28000 CHARTRES",
+      "area": null,
+      "available": true,
+      "id": "1728",
+      "label": "T1 24m2",
+      "rent": "7000",
+      "residence": "MERLEAU PONTY",
+      "units": 1,
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1728"
     }
   },
   "version": 1
