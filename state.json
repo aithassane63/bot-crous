@@ -2,7 +2,7 @@
   "consecutive_failures": 0,
   "failure_alert_sent": false,
   "initialized": true,
-  "last_heartbeat": "2026-08-05T09:11:24.144882+00:00",
+  "last_heartbeat": "2026-08-05T10:12:15.541581+00:00",
   "listings": {
     "1571": {
       "address": "25/27 rue des Bas-Bourgs 28000 CHARTRES",
@@ -14,17 +14,6 @@
       "residence": "JEAN ZAY",
       "units": 1,
       "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1571"
-    },
-    "1714": {
-      "address": "8, place François Rabelais 28000 CHARTRES",
-      "area": null,
-      "available": true,
-      "id": "1714",
-      "label": "T1 18 à 19m2",
-      "rent": "7000",
-      "residence": "MERLEAU PONTY",
-      "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1714"
     },
     "950": {
       "address": "6, rue du Père Wresinski 28000 CHARTRES",
