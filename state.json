@@ -3,6 +3,18 @@
   "failure_alert_sent": false,
   "initialized": true,
   "last_heartbeat": "2026-08-14T01:37:11.641735+00:00",
-  "listings": {},
+  "listings": {
+    "1571": {
+      "address": "25/27 rue des Bas-Bourgs 28000 CHARTRES",
+      "area": null,
+      "available": true,
+      "id": "1571",
+      "label": "STUDIO 19m2",
+      "rent": "7000",
+      "residence": "JEAN ZAY",
+      "units": 1,
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1571"
+    }
+  },
   "version": 1
 }
