@@ -1,5 +1,5 @@
 {
-  "consecutive_failures": 1,
+  "consecutive_failures": 0,
   "failure_alert_sent": false,
   "initialized": true,
   "last_heartbeat": "2026-08-18T11:56:15.741297+00:00",
@@ -14,6 +14,17 @@
       "residence": "JEAN ZAY",
       "units": 1,
       "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1571"
+    },
+    "950": {
+      "address": "6, rue du Père Wresinski 28000 CHARTRES",
+      "area": null,
+      "available": true,
+      "id": "950",
+      "label": "T1 18m2",
+      "rent": "7000",
+      "residence": "DESANTI",
+      "units": 1,
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/950"
     }
   },
   "version": 1
