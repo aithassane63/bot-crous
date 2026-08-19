@@ -1,8 +1,8 @@
 {
-  "consecutive_failures": 1,
+  "consecutive_failures": 0,
   "failure_alert_sent": false,
   "initialized": true,
-  "last_heartbeat": "2026-08-19T17:21:16.263483+00:00",
+  "last_heartbeat": "2026-08-19T18:22:16.739356+00:00",
   "listings": {
     "950": {
       "address": "6, rue du Père Wresinski 28000 CHARTRES",
