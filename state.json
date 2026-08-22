@@ -1,6 +1,6 @@
 {
-  "consecutive_failures": 3,
-  "failure_alert_sent": true,
+  "consecutive_failures": 0,
+  "failure_alert_sent": false,
   "initialized": true,
   "last_heartbeat": "2026-08-22T08:27:16.693660+00:00",
   "listings": {},
