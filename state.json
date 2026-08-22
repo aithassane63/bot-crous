@@ -1,8 +1,8 @@
 {
-  "consecutive_failures": 1,
+  "consecutive_failures": 0,
   "failure_alert_sent": false,
   "initialized": true,
-  "last_heartbeat": "2026-08-22T08:27:16.693660+00:00",
+  "last_heartbeat": "2026-08-22T09:29:13.601254+00:00",
   "listings": {},
   "version": 1
 }
