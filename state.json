@@ -1,5 +1,5 @@
 {
-  "consecutive_failures": 0,
+  "consecutive_failures": 1,
   "failure_alert_sent": false,
   "initialized": true,
   "last_heartbeat": "2026-09-01T19:28:18.069382+00:00",
