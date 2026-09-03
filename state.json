@@ -14,6 +14,17 @@
       "residence": "MERLEAU PONTY",
       "units": 1,
       "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1714"
+    },
+    "950": {
+      "address": "6, rue du Père Wresinski 28000 CHARTRES",
+      "area": null,
+      "available": true,
+      "id": "950",
+      "label": "T1 18m2",
+      "rent": "7000",
+      "residence": "DESANTI",
+      "units": 1,
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/950"
     }
   },
   "version": 1
