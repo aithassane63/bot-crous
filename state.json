@@ -3,18 +3,6 @@
   "failure_alert_sent": false,
   "initialized": true,
   "last_heartbeat": "2026-09-04T12:08:14.914131+00:00",
-  "listings": {
-    "983": {
-      "address": "3, Rue du Théatre 78990 - ELANCOURT",
-      "area": null,
-      "available": true,
-      "id": "983",
-      "label": "T1 PROV",
-      "rent": "7000",
-      "residence": "VSQ-Elancourt",
-      "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/983"
-    }
-  },
+  "listings": {},
   "version": 1
 }
