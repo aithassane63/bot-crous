@@ -3,18 +3,6 @@
   "failure_alert_sent": false,
   "initialized": true,
   "last_heartbeat": "2026-09-04T16:12:15.105384+00:00",
-  "listings": {
-    "3005": {
-      "address": "Bâtiment 470 Domaine de l’université de Paris Saclay Rue du château 91400 Orsay",
-      "area": null,
-      "available": true,
-      "id": "3005",
-      "label": "T4 Colocation-3",
-      "rent": "7000",
-      "residence": "Orsay-Georges Charpak",
-      "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/3005"
-    }
-  },
+  "listings": {},
   "version": 1
 }
