@@ -4,16 +4,16 @@
   "initialized": true,
   "last_heartbeat": "2026-09-04T06:04:15.596884+00:00",
   "listings": {
-    "1716": {
-      "address": "1, place des Linandes Mauves 95000 Cergy",
+    "3005": {
+      "address": "Bâtiment 470 Domaine de l’université de Paris Saclay Rue du château 91400 Orsay",
       "area": null,
       "available": true,
-      "id": "1716",
-      "label": "T1 Colocation",
+      "id": "3005",
+      "label": "T4 Colocation-3",
       "rent": "7000",
-      "residence": "Cergy-Linandes extension",
+      "residence": "Orsay-Georges Charpak",
       "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1716"
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/3005"
     }
   },
   "version": 1
