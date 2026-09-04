@@ -4,27 +4,16 @@
   "initialized": true,
   "last_heartbeat": "2026-09-04T12:08:14.914131+00:00",
   "listings": {
-    "3005": {
-      "address": "Bâtiment 470 Domaine de l’université de Paris Saclay Rue du château 91400 Orsay",
+    "983": {
+      "address": "3, Rue du Théatre 78990 - ELANCOURT",
       "area": null,
       "available": true,
-      "id": "3005",
-      "label": "T4 Colocation-3",
+      "id": "983",
+      "label": "T1 PROV",
       "rent": "7000",
-      "residence": "Orsay-Georges Charpak",
+      "residence": "VSQ-Elancourt",
       "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/3005"
-    },
-    "3006": {
-      "address": "Bâtiment 470 Domaine de l’université de Paris Saclay Rue du château 91400 Orsay",
-      "area": null,
-      "available": true,
-      "id": "3006",
-      "label": "T5 Colocation-4",
-      "rent": "7000",
-      "residence": "Orsay-Georges Charpak",
-      "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/3006"
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/983"
     }
   },
   "version": 1
