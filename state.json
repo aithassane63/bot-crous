@@ -3,18 +3,6 @@
   "failure_alert_sent": false,
   "initialized": true,
   "last_heartbeat": "2026-09-05T12:22:20.959341+00:00",
-  "listings": {
-    "678": {
-      "address": "4, place Pierre Mendes France 78990 ELANCOURT",
-      "area": null,
-      "available": true,
-      "id": "678",
-      "label": "T1 PROV",
-      "rent": "7000",
-      "residence": "VSQ-Le Capitole",
-      "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/678"
-    }
-  },
+  "listings": {},
   "version": 1
 }
