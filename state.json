@@ -3,29 +3,6 @@
   "failure_alert_sent": false,
   "initialized": true,
   "last_heartbeat": "2026-09-07T07:48:17.679484+00:00",
-  "listings": {
-    "3005": {
-      "address": "Bâtiment 470 Domaine de l’université de Paris Saclay Rue du château 91400 Orsay",
-      "area": null,
-      "available": true,
-      "id": "3005",
-      "label": "T4 Colocation-3",
-      "rent": "7000",
-      "residence": "Orsay-Georges Charpak",
-      "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/3005"
-    },
-    "678": {
-      "address": "4, place Pierre Mendes France 78990 ELANCOURT",
-      "area": null,
-      "available": true,
-      "id": "678",
-      "label": "T1 PROV",
-      "rent": "7000",
-      "residence": "VSQ-Le Capitole",
-      "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/678"
-    }
-  },
+  "listings": {},
   "version": 1
 }
