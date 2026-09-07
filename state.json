@@ -4,16 +4,16 @@
   "initialized": true,
   "last_heartbeat": "2026-09-07T11:49:13.768878+00:00",
   "listings": {
-    "950": {
-      "address": "6, rue du Père Wresinski 28000 CHARTRES",
+    "1716": {
+      "address": "1, place des Linandes Mauves 95000 Cergy",
       "area": null,
       "available": true,
-      "id": "950",
-      "label": "T1 18m2",
+      "id": "1716",
+      "label": "T1 Colocation",
       "rent": "7000",
-      "residence": "DESANTI",
+      "residence": "Cergy-Linandes extension",
       "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/950"
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1716"
     }
   },
   "version": 1
