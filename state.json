@@ -4,17 +4,6 @@
   "initialized": true,
   "last_heartbeat": "2026-09-08T08:13:11.991204+00:00",
   "listings": {
-    "1716": {
-      "address": "1, place des Linandes Mauves 95000 Cergy",
-      "area": null,
-      "available": true,
-      "id": "1716",
-      "label": "T1 Colocation",
-      "rent": "7000",
-      "residence": "Cergy-Linandes extension",
-      "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1716"
-    },
     "2702": {
       "address": "16, rue André Blanc Lapierre 91190 GIF-SUR-YVETTE",
       "area": null,
