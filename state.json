@@ -4,17 +4,6 @@
   "initialized": true,
   "last_heartbeat": "2026-09-08T09:13:13.782384+00:00",
   "listings": {
-    "2702": {
-      "address": "16, rue André Blanc Lapierre 91190 GIF-SUR-YVETTE",
-      "area": null,
-      "available": true,
-      "id": "2702",
-      "label": "T4 Colocation",
-      "rent": "7000",
-      "residence": "Saclay-George Sand",
-      "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/2702"
-    },
     "950": {
       "address": "6, rue du Père Wresinski 28000 CHARTRES",
       "area": null,
