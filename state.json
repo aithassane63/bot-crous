@@ -3,6 +3,18 @@
   "failure_alert_sent": false,
   "initialized": true,
   "last_heartbeat": "2026-09-08T15:17:14.538240+00:00",
-  "listings": {},
+  "listings": {
+    "1751": {
+      "address": "1 Impasse de la Predecelle 91000 EVRY",
+      "area": null,
+      "available": true,
+      "id": "1751",
+      "label": "T3 Colocation",
+      "rent": "7000",
+      "residence": "Evry- Aunettes",
+      "units": 1,
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1751"
+    }
+  },
   "version": 1
 }
