@@ -4,16 +4,16 @@
   "initialized": true,
   "last_heartbeat": "2026-09-15T09:57:14.284223+00:00",
   "listings": {
-    "2702": {
-      "address": "16, rue André Blanc Lapierre 91190 GIF-SUR-YVETTE",
+    "1716": {
+      "address": "1, place des Linandes Mauves 95000 Cergy",
       "area": null,
       "available": true,
-      "id": "2702",
-      "label": "T4 Colocation",
+      "id": "1716",
+      "label": "T1 Colocation",
       "rent": "7000",
-      "residence": "Saclay-George Sand",
+      "residence": "Cergy-Linandes extension",
       "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/2702"
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1716"
     }
   },
   "version": 1
