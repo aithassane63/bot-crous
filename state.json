@@ -14,6 +14,17 @@
       "residence": "Saclay-George Sand",
       "units": 1,
       "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/2702"
+    },
+    "3293": {
+      "address": "4 -12 voie GZ/13 75013 PARIS",
+      "area": null,
+      "available": true,
+      "id": "3293",
+      "label": "T1 PMR PLS",
+      "rent": "7000",
+      "residence": "HANS ET SOPHIE SCHOLL",
+      "units": 1,
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/3293"
     }
   },
   "version": 1
