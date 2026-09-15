@@ -4,16 +4,16 @@
   "initialized": true,
   "last_heartbeat": "2026-09-15T08:56:15.172231+00:00",
   "listings": {
-    "983": {
-      "address": "3, Rue du Théatre 78990 - ELANCOURT",
+    "1716": {
+      "address": "1, place des Linandes Mauves 95000 Cergy",
       "area": null,
       "available": true,
-      "id": "983",
-      "label": "T1 PROV",
+      "id": "1716",
+      "label": "T1 Colocation",
       "rent": "7000",
-      "residence": "VSQ-Elancourt",
+      "residence": "Cergy-Linandes extension",
       "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/983"
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/1716"
     }
   },
   "version": 1
