@@ -15,16 +15,16 @@
       "units": 1,
       "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/2555"
     },
-    "950": {
-      "address": "6, rue du Père Wresinski 28000 CHARTRES",
+    "2702": {
+      "address": "16, rue André Blanc Lapierre 91190 GIF-SUR-YVETTE",
       "area": null,
       "available": true,
-      "id": "950",
-      "label": "T1 18m2",
+      "id": "2702",
+      "label": "T4 Colocation",
       "rent": "7000",
-      "residence": "DESANTI",
+      "residence": "Saclay-George Sand",
       "units": 1,
-      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/950"
+      "url": "https://trouverunlogement.lescrous.fr/tools/47/accommodations/2702"
     }
   },
   "version": 1
